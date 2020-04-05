@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 const db = require('./db');
-const userSchmea = require('./user');
+
 
 const app = express();
 
@@ -13,7 +13,6 @@ db.connectDB().then(r =>
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.get('/hello', (req, res) => res.send('hello!'));
 
 
 app.post('/formA', function (req, res) {
@@ -52,7 +51,7 @@ app.get('/check', async function (req, res) {
 });
 
 
-//insert & update data
+/**insert & update data **/
 app.post('/update', function (req, res) {
     let obj = req.body
     let category = obj.category
@@ -60,25 +59,23 @@ app.post('/update', function (req, res) {
     let flag = false;
     let index = 0;
     db.getUserDoc(req.body).then(function (data) {
-        // console.log(data.doc)
-        let keys = Object.keys(data.doc)
-        console.log(`${category}`)
-        if (keys.includes(`${category}`)) {
-            let catObj = data.doc[`${category}`]
-            let nestedKeys = Object.keys(catObj);
-            let nestedVals = Object.values(catObj)
-            for (let i = 0; i < catObj.length; i++) {
-                if (catObj[i].month === insertObj.month && catObj[i].year === insertObj.year) {
-                    console.log("not unique " + i)
-                    flag = true;
-                    index = i;
-                    console.log(catObj.length);
-                }
+
+        let billsArr = data.doc
+        for (let i = 0; i < billsArr.length; i++) {
+            if (billsArr[i].id === req.body.data.id && billsArr[i].category === req.body.category) {
+                flag = true;
             }
-            // console.log(insertObj.month + " "+ insertObj.year)
-            console.log(catObj.length);
+
         }
-        db.update(req.body, obj.data, obj.category, flag, index).then(function (data) {
+        if (flag) {
+            db.pullArrItem(req.body).then(function () {
+
+                flag = false;
+            });
+        }
+
+        // console.log(req.body)
+        db.update(req.body, obj.data).then(function (data) {
             // res.setHeader('Content-Type', 'text/plain');
             // res.end(data)
             console.log(data);
@@ -89,22 +86,79 @@ app.post('/update', function (req, res) {
             })
         });
 
-        // console.log(typeof data)
-        // console.log(data);
-        // res.end(JSON.stringify(data.doc));
+
     })
 
 
 })
 
 
-//delete data
+/**delete bill -----> below sample body format
+{
+  "firstName":"Yamin",
+  "lastName": "Huzaifa",
+  "password": "admin1",
+  "username": "huz1",
+  "category": "internet",
+  "data": {
+  	"category":"internet",
+  	"id": "dec2020",
+  	"ammount": 67
+
+}} **/
+app.delete('/delBill', function (req, res) {
+
+    db.pullArrItem(req.body).then(function (data) {
+            if (data.code == 200) {
+
+                res.end(JSON.stringify(200));
+            } else {
+                res.end(JSON.stringify(404));
+            }
+
+        }
+    ).catch(function (e) {
+
+        res.status(500, {
+            error: e
+        })
+    })
 
 
-//update data
+})
 
 
-app.post('/hello', (req, res) => res.send(`Hello ${req.body.name}!`));
+/**
+ * call data by category sample body
+{
+  "username": "huz1",
+  "category": "internet"} **/
+app.get('/getDoc', function (req, res) {
+    db.getUserDoc(req.body).then(function (data) {
+        if (data.code === 200) {
+            let billsArr = data.doc
+
+            const catBill = {}
+            for (let i = 0; i < billsArr.length; i++) {
+                if (billsArr[i].category === req.body.category) {
+                    catBill[`${billsArr[i].id}`] = billsArr[i].amount
+                }
+            }
+            console.log(catBill);
+            res.end(JSON.stringify({code:200, respData:catBill}));
+
+        } else {
+            res.end(JSON.stringify({code: 404}));
+        }
+    }).catch(function (e) {
+        res.status(500, {
+            error: e
+        })
+    })
+})
+
+
+
 
 
 //post log form

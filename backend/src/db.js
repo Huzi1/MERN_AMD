@@ -59,84 +59,60 @@ async function validate(obj) {
     }
 }
 
-function update(obj, newBill, category, flag, index) {
+function update(obj, newBill) {
     return new Promise(function (resolve, reject) {
 
-        let qry;
-        if (!flag) {
+        let qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data": newBill}});
+
+            qry.exec(function (err, user) {
+
+                if (err) {
+                    console.log(err)
+                    return reject({code: 404})
+                } else {
+                    // console.log(user)
+                    return resolve({code:200,doc: user.data})
+                }
+            })
 
 
-            switch (category) {
-                case 'internet':
-                    qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data.internet": newBill}});
-                    break;
-                case 'electricity':
-                    qry = User.findOneAndUpdate({username: obj.username,}, {$push: {"data.electricity": newBill}});
-                    break;
-                case 'water':
-                    qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data.water": newBill}});
-                    break;
-                case 'gas':
-                    qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data.gas": newBill}});
-                    break;
-                default:
-
-                    break;
-            }
-        }else{
-            console.log("duplicate qry")
-            switch (category) {
-                case 'internet':
-                    qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data.internet": newBill,$position: index}});
-                    break;
-                case 'electricity':
-                    qry = User.updateOne({username: obj.username}, {$set: {"data.electricity": newBill}});
-                    console.log("Inside db case "+index)
-                    break;
-                case 'water':
-                    qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data.water": newBill,$position: index}});
-                    break;
-                case 'gas':
-                    qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data.gas": newBill,$position: index}});
-                    break;
-                default:
-
-                    break;
-            }
         }
-        // let qry = User.findOneAndUpdate({username: obj.username}, {$push:{`data.${category}`:newBill}});
+    );
+}
+//delete array item in document
+function pullArrItem(obj) {
+    return new Promise (function (resolve, reject) {
 
-        qry.exec(function (err, user) {
+        let qry = User.update({username:obj.username}, {$pull:{"data": {id:obj.data.id, category: obj.data.category}}});
 
-            if (err) {
+        qry.exec(function (err, userDoc) {
+            if(err){
                 console.log(err)
-                return reject({err: 404})
-            } else {
-                // console.log(user)
-                return resolve({id: user.data})
+                return reject({code:404})
+            }else{
+                console.log(userDoc + "pull successful")
+                return resolve({code:200})
             }
         })
-
     });
-}
-function updateNested(){
 
 }
-function getUserDoc(obj){
+
+function getUserDoc(obj) {
     return new Promise(function (resolve, reject) {
 
-            let qry = User.find({username: obj.username})
+        let qry = User.find({username: obj.username});
 
-            qry.exec(function (err,user) {
-                if(err){
-                    console.log(err)
-                    return reject({err: 404})
-                }else{
-                    // console.log(user)
-                    return resolve({code: 202, doc: user[0].data});
-                }
+        qry.exec(function (err, user) {
+            if (err) {
+                console.log(err)
+                return reject({code: 404})
+            } else {
+                console.log(user)
+                return resolve({code: 200, doc: user[0].data});
+            }
 
-            })
+        })
 
     });
 }
@@ -147,7 +123,8 @@ module.exports = {
     validate,
     update,
     connectDB,
-    getUserDoc
+    getUserDoc,
+    pullArrItem
 
 }
 
