@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
-import {Formik} from "formik";
-import * as Yup from "yup";
+import React from 'react';
+
 import loginImg from './login2.jpg';
-import Component from "react";
-import Error from "./Error";
+
 import Nav from  "./formNav";
 import FormA from "./formA";
 // import Dashboard from "../pages/dashboard";
@@ -18,21 +16,16 @@ import {BrowserRouter as Router, Route,} from 'react-router-dom';
 
 
 function Login() {
-    var [status, setState] = useState(false)
+    // var [status, setState] = useState(false)
 
 
     return (
         <div id="main-box">
-            {/*<h1>Helllllo login{status}</h1>*/}
+
             <div className="left">
                 <div style={{
 
                     top: "20%",
-                    // left:"10%",
-// right:"10%",
-//                     width: "auto",
-//                     height: "auto",
-//                     margin: "0 auto",
                     position: "relative",
                     display: "flex"
                 }}>

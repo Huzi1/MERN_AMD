@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+
 import {BrowserRouter as Router, Route,} from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/home';
-import Dashboard from './pages/dashboard';
-import Profile from './pages/profile';
-import NavBar from "./NavBar";
-import login from "./login/login";
-import formB from "./login/formB";
+
+import login from "./loginComponents/login";
+
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 

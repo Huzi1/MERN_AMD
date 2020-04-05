@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
-import loginImg from './login2.jpg';
-import Component from "react";
+
 import Error from "./Error";
 
 
