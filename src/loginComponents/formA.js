@@ -38,22 +38,6 @@ function FormA() {
                             //    formik in control of form submit event
                             <form onSubmit={handleSubmit} id="log-form">
 
-                                {/*<div style={{*/}
-                                {/*    flex: 1,*/}
-                                {/*    order: 1*/}
-                                {/*}}>*/}
-                                {/*    <label style={*/}
-                                {/*        {*/}
-                                {/*            color: "#6200EE",*/}
-                                {/*            fontWeight: "bold",*/}
-                                {/*            fontSize: "2em",*/}
-                                {/*            // flexGrow: "<2>"*/}
-
-
-                                {/*        }*/}
-                                {/*    }> Login </label>*/}
-                                {/*</div>*/}
-                                {/*<label htmlFor="userName">UserName: </label>*/}
                                 <div style={{
                                     flex: 1,
                                     order: 2

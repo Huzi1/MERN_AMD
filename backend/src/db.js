@@ -49,10 +49,10 @@ function registerUser(obj) {
 }
 
 async function validate(obj) {
-    let count = await User.exists({username: obj.username});
-    console.log(count);
+    let check = await User.exists({username: obj.username, password:obj.password});
+    console.log(check);
 
-    if (count) {
+    if (check) {
         return 202
     } else {
         return 204
