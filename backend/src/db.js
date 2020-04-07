@@ -109,7 +109,7 @@ function getUserDoc(obj) {
                 return reject({code: 404})
             } else {
                 console.log(user)
-                return resolve({code: 200, doc: user[0].data});
+                return resolve({code: 200, doc: user[0]});
             }
 
         })

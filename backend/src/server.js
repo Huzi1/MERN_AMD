@@ -40,7 +40,14 @@ app.get('/check', async function (req, res) {
 
         console.log(response)
         if (response === 202) {
+                db.getUserDoc(req.body).then(function (data) {
 
+                    if(data.code === 200){
+                        res.end(JSON.stringify({code: 200, doc: data.doc}));
+                    }
+
+
+                })
             res.end(JSON.stringify(200));
         } else {
             res.end(JSON.stringify(204));
@@ -60,7 +67,7 @@ app.post('/update', function (req, res) {
     let index = 0;
     db.getUserDoc(req.body).then(function (data) {
 
-        let billsArr = data.doc
+        let billsArr = data.doc.data
         for (let i = 0; i < billsArr.length; i++) {
             if (billsArr[i].id === req.body.data.id && billsArr[i].category === req.body.category) {
                 flag = true;
