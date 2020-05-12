@@ -13,6 +13,11 @@ const validationSchema = Yup.object().shape({
     lName: Yup.string().min(3, "Must be at least 3 characters").max(255, "Must be shorter than 255 characters").required(),
 });
 
+const mapStateToProps = state =>{
+    return {
+        isLoading: state.isLoading
+    }
+}
 
 function FormB(){
 

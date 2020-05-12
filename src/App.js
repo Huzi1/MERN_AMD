@@ -1,26 +1,27 @@
 import React, {Component} from 'react';
-import Amplify, { API } from 'aws-amplify';
-import awsconfig from './aws-exports';
-import {BrowserRouter as Router, Route,} from 'react-router-dom';
+
+// import Amplify, { API } from 'aws-amplify';
+// import awsconfig from './aws-exports';
 import './App.css';
-
-import login from "./loginComponents/login";
-
+import store from './redux/configureStore'
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Routes from "./Routes";
+import {Provider} from "react-redux";
 
-Amplify.configure(awsconfig);
-class App extends Component {
-    render() {
+// Amplify.configure(awsconfig);
+const App= () => {
+
         return (
 
-            <Router>
-                <div className="App">
+                      <Provider store={store}>
 
+                <div className="App">
+                    <Routes/>
                     {/*<NavBar/>*/}
 
 
-                    <Route path={"/"} component={login} exact/>
                     {/*<Route path={"/register"} component={formB}/>*/}
                     {/*<Route path={"/profile"} component={Profile}/>*/}
 
@@ -40,9 +41,10 @@ class App extends Component {
                     {/*  </a>*/}
                     {/*</header>*/}
                 </div>
-            </Router>
+                      </Provider>
+
         );
-    }
-}
+
+};
 
 export default App;
