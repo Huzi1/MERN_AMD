@@ -62,7 +62,7 @@ async function validate(obj) {
 function update(obj, newBill) {
     return new Promise(function (resolve, reject) {
 
-        let qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data": newBill}});
+        let qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data": newBill}},{new: true});
 
             qry.exec(function (err, user) {
 
@@ -71,7 +71,8 @@ function update(obj, newBill) {
                     return reject({code: 404})
                 } else {
                     // console.log(user)
-                    return resolve({code:200,doc: user.data})
+
+                    return resolve({code:200,doc: {data: user.data}})
                 }
             })
 
@@ -108,7 +109,7 @@ function getUserDoc(obj) {
                 console.log(err)
                 return reject({code: 404})
             } else {
-                console.log(user)
+                console.log("hello User",user)
                 return resolve({code: 200, doc: user[0]});
             }
 
