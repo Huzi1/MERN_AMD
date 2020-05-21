@@ -29,19 +29,14 @@ const FormA = () => {
             console.log("loginData", loginData);
             localStorage.setItem("user", loginData.doc.username);
             const bills = loginData.doc.data;
-            // const keySet = new Set();
-            //
-            // tempArr.forEach(function(item, index){
-            //     keySet.add(item.category)
-            // });
-            // console.log(keySet)
+
             return (<Redirect
                 to={{
                     pathname: "/home",
                     state: {
                         fName: loginData.doc.firstName,
-                        lName: loginData.doc.lastName,
-                        bills: bills
+                        lName: loginData.doc.lastName
+                        // bills: bills
                     }
                 }}
             />)

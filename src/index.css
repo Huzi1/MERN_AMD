@@ -22,7 +22,9 @@ code {
 body {
     background-color: #FFFFFF;
 }
-
+.nav-link.active{
+    background-color: #3700B3 !important;
+}
 #navbar ul {
     list-style-type: none;
     margin: 0;
