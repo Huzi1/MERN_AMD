@@ -5,7 +5,7 @@ import Badge from "react-bootstrap/Badge";
 import PieChart from "../charts/Pie";
 
 const HomeNav = (props) => {
-    console.log("insideHomeNav",props)
+    console.log("insideHomeNav", props)
     // props = JSON.parse(props)
     const title = props.cat;
     const billSum = props.billSm;
@@ -14,22 +14,22 @@ const HomeNav = (props) => {
         <>
             <h4> My Bills</h4>
 
-            <Container >
+            <Container>
                 <Row>
-                    <Col >
+                    <Col>
                         <div>
                             <Badge variant={"success"}>My Bill Categories </Badge>
-                <ListGroup variant={'flush'} as="ul">
-                    {title.map((cat) => <ListGroup.Item action variant={"primary"} as="li"
-                                                        key={Math.random()}>{cat.toUpperCase()}</ListGroup.Item>)}
-                </ListGroup>
+                            <ListGroup variant={'flush'} as="ul">
+                                {title.map((cat) => <ListGroup.Item action variant={"primary"} as="li"
+                                                                    key={Math.random()}>{cat.toUpperCase()}</ListGroup.Item>)}
+                            </ListGroup>
                         </div>
                     </Col>
                     {/* <Col>*/}
 
                     {/*</Col>*/}
 
-                    <Col   >
+                    <Col>
                         <PieChart title={title} bill={`${billSum}`}/>
 
                     </Col>

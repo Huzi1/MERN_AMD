@@ -13,8 +13,8 @@ const Add = (props) => {
     const {bills} = props
 
     const [count, setCount] = useState(0);
-    const [delay, setDelay] = useState(350);
-    const [isRunning, setIsRunning] = useState(false);
+    // const [delay, setDelay] = useState(350);
+    // const [isRunning, setIsRunning] = useState(false);
 
     //   useInterval(
     //     () => {
@@ -26,8 +26,9 @@ const Add = (props) => {
 
     const dispatch = useDispatch();
     const validationSchema = Yup.object().shape({
-        title: Yup.string().min(3, "Must have at least 3 Characters").max(255, "Must" +
-            " be shorter than 255").required("Must enter a Title").matches(/^[A-Za-z]+$/, "no integers and special characters allowed")
+        title: Yup.string().strict(true).min(3, "Must have at least 3 Characters").lowercase("must be in lowercase").max(255, "Must" +
+            " be shorter than 255").notOneOf(bills,"Category already exist").required("Must enter a Title").matches(/^[A-Za-z]+$/, "no integers and special characters allowed")
+
 
     });
     // const catAddLoading = useSelector(state => state.dashboardReducer.isLoading);
@@ -40,12 +41,11 @@ const Add = (props) => {
     //     state => state.dashboardReducer.error
     // );
 
-    if (bills!=undefined) {
+    if (bills != undefined) {
         console.log("Inside cat tab", bills);
-         // setIsRunning(false);
-         //setCount(100)
+        // setIsRunning(false);
+        //setCount(100)
     }
-
 
 
     return (
@@ -60,11 +60,11 @@ const Add = (props) => {
 
 
                         setSubmitting(true);
-                        //setIsRunning(true);
-                        // setCount(50);
+                        // setIsRunning(true);
+                        setCount(50);
                         // alert(JSON.stringify(values, null, 2));
-                        const obj = {category: values.title, id: 'null', amount: null};
-                        // dispatch(postUserData(obj));
+                        const obj = {category: values.title.toLowerCase(), id: 'aug2021', amount: 89};
+                        dispatch(postUserData(obj));
 
 
                         resetForm();
@@ -97,13 +97,13 @@ const Add = (props) => {
                                 {errors.title}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button  id="submit" variant="primary" type="submit">
                             Submit
                         </Button>
 
                         <div>
                             <br/>
-                            {/*<ProgressBar variant="success" now={count} label={`${count}%`}/>*/}
+                            <ProgressBar variant="success" now={count} label={`${count}%`}/>
                         </div>
                     </Form>
                 )}

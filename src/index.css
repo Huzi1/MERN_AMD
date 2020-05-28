@@ -18,11 +18,19 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.jumbotron{
+    background-color: #00BCD4 !important;
+}
+
 
 body {
     background-color: #FFFFFF;
 }
 .nav-link.active{
+    background-color: #6200EE !important;
+    border: 1px solid rgba(0, 0, 0, 0.4) !important;
+}
+.nav-link.active:hover{
     background-color: #3700B3 !important;
 }
 #navbar ul {

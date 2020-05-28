@@ -6,6 +6,9 @@ import {
     POST_USER_DATA_REQUEST,
     POST_USER_DATA_SUCCESS,
     POST_USER_DATA_FAILURE,
+    DELETE_CATEGORY_FAIL,
+    DELETE_CATEGORY_REQ,
+    DELETE_CATEGORY_SUCCESS
 } from './types'
 
 
@@ -55,6 +58,27 @@ export const postUserDataFail = error => {
 
 };
 
+
+export const DeleteCatReq = () => {
+    return{
+       type: DELETE_CATEGORY_REQ
+    }
+};
+
+export const DeleteCatSuccess = data =>{
+    return {
+        type:DELETE_CATEGORY_SUCCESS,
+        payload: data
+    }
+}
+
+export const DeleteCatFail = error=>{
+    return {
+        type:DELETE_CATEGORY_FAIL,
+        payload: error
+    }
+}
+
 export const postUserData = (obj) => {
     return function (dispatch) {
         const user = localStorage.getItem('user')
@@ -71,6 +95,28 @@ export const postUserData = (obj) => {
         })
     }
 };
+
+export const deleteCat = (obj) => {
+    return function (dispatch) {
+        const user = localStorage.getItem('user')
+
+        console.log(obj)
+        const myObj = {
+            'username' : user,
+            'data': obj
+        }
+        console.log("Inside deleteCat", myObj);
+        dispatch(DeleteCatReq());
+        axios.delete(apiUrl + '/delCat', {params: myObj}).then(resp => {
+            dispatch(DeleteCatSuccess(resp.data))
+                console.log('Delete resp', resp.data)
+        }).catch(error => {
+            dispatch(DeleteCatFail(error.message))
+        })
+    }
+
+};
+
 
 export const fetchUserData = (obj) => {
     return function (dispatch) {

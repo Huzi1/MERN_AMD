@@ -6,10 +6,13 @@ import util from "../utils/util"
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUser, fetchUserData} from "../redux/actions";
 import Spinner from "react-bootstrap/Spinner";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 
 
 const DashBoard = (props) => {
-    const {fName, lName} = props.location.state;
+    console.log("My Dashboard props", props)
+    // const {fName, lName} = props.location.state;
     let count = 0;
 
     const [item, setitem] = useState({eventKey: "home"});
@@ -51,10 +54,20 @@ const DashBoard = (props) => {
 
     return (
         <>
+            {/*{fName} {lName}*/}
 
-            <h1> Hello {fName} {lName} {item.eventKey} </h1>
+                {/*style="margin-left: 240px; padding: 15px 20px 0px*/}
+            <div style={{
+                marginLeft: '64px',
+                padding: '15px 20px 0px'
+            }}>
+                {
+                item.eventKey === "home"
+                ? <h1> Hello {item.eventKey} </h1>
+                    : <div className="theme__status" style={{background: "#0097A7"}}> .</div>
 
-            <div>
+                }
+                {/*<div class="theme__status" style="background: rgb(0, 151, 167);"></div>*/}
                 {(() => {
                     switch (item.eventKey) {
                         case "home":
@@ -80,16 +93,7 @@ const DashBoard = (props) => {
 
             </div>
 
-
-            {/*<div>*/}
-            {/*    <h4> My Bills</h4>*/}
-
-            {/*    <ListGroup as="ul">*/}
-            {/*        {bills.map((bill) => <ListGroup.Item as="li"*/}
-            {/*                                             key={Math.random()}>-{bill.category}</ListGroup.Item>)}*/}
-            {/*    </ListGroup>*/}
-            {/*</div>*/}
-            <SideNav
+            <SideNav id={"mySidebar"}
                 onSelect={(selected) => {
                     // Add your code here
                     if (selected === "charts") {
@@ -113,23 +117,13 @@ const DashBoard = (props) => {
                     </NavItem>
                     <NavItem eventKey="charts">
                         <NavIcon>
-                            {/*fa fa-fw fa-line-chart*/}
-                            {/*<i className="fas fa-file-invoice-dollar"></i>*/}
+
                             <i className="fa fa-fw fa-list-alt" style={{fontSize: '1.75em'}}/>
                         </NavIcon>
                         <NavText>
                             Bills
                         </NavText>
-                        {/*<NavItem eventKey="charts/linechart">*/}
-                        {/*    <NavText>*/}
-                        {/*        Line Chart*/}
-                        {/*    </NavText>*/}
-                        {/*</NavItem>*/}
-                        {/*<NavItem eventKey="charts/barchart">*/}
-                        {/*    <NavText>*/}
-                        {/*        Bar Chart*/}
-                        {/*    </NavText>*/}
-                        {/*</NavItem>*/}
+
                     </NavItem>
                 </SideNav.Nav>
 
