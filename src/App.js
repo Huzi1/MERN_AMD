@@ -6,11 +6,12 @@ import './App.css';
 import store from './redux/configureStore'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import './index.css';
+import './jumbotron.scss'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Routes from "./Routes";
 import {Provider} from "react-redux";
 
-// Amplify.configure(awsconfig);
+
 const App= () => {
 
         return (
@@ -18,28 +19,8 @@ const App= () => {
                       <Provider store={store}>
 
                 <div className="App">
-                    <Routes/>
-                    {/*<NavBar/>*/}
+                    <Routes />
 
-
-                    {/*<Route path={"/register"} component={formB}/>*/}
-                    {/*<Route path={"/profile"} component={Profile}/>*/}
-
-
-                    {/*<header className="App-header">*/}
-                    {/*  <img src={logo} className="App-logo" alt="logo" />*/}
-                    {/*  <p>*/}
-                    {/*    Edit <code>src/App.js</code> and save to reload.*/}
-                    {/*  </p>*/}
-                    {/*  <a*/}
-                    {/*    className="App-link"*/}
-                    {/*    href="https://reactjs.org"*/}
-                    {/*    target="_blank"*/}
-                    {/*    rel="noopener noreferrer"*/}
-                    {/*  >*/}
-                    {/*    Learn React*/}
-                    {/*  </a>*/}
-                    {/*</header>*/}
                 </div>
                       </Provider>
 

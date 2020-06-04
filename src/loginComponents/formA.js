@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {useSelector, useDispatch} from "react-redux";
@@ -23,11 +23,13 @@ const FormA = () => {
         state => state.loginReducer.error
     );
 
-    if (loginData.length != 0 ) {
+    if (loginData.length != 0) {
 
-        if(loginData.code === 200) {
+        if (loginData.code === 200) {
             console.log("loginData", loginData);
             localStorage.setItem("user", loginData.doc.username);
+
+
             const bills = loginData.doc.data;
 
             return (<Redirect
@@ -36,29 +38,15 @@ const FormA = () => {
                     state: {
                         fName: loginData.doc.firstName,
                         lName: loginData.doc.lastName
-                        // bills: bills
+
                     }
                 }}
             />)
-        }
-        else{
+        } else {
             console.log("loginError", loginError);
         }
     }
-    // } else if (loginError) {
-    //     console.log("loginError", loginError);
-    // }
 
-//     const mapStateToProps = state =>{
-//     return {
-//         isLoading: state.isLoading
-//     }
-// }
-// const mapDispatchToProps = dispatch => {
-//     return{
-//         fetchUser: ()=> dispatch(fetchUser())
-//     }
-// }
     return (
         <>
             <Formik initialValues={{userName: "", password: ""}}
@@ -101,17 +89,11 @@ const FormA = () => {
                                 onBlur={handleBlur}
                                 value={values.userName}
                                 className={touched.userName && errors.userName ? "has-error" : null}
-                                // style={{
-                                //     padding: "12px 20px",
-                                //
-                                // }}
 
                             />
                             <Error touched={touched.userName} message={errors.userName}/>
                         </div>
 
-
-                        {/*<label htmlFor="password">Password: </label>*/}
                         <div style={{
                             flex: 1,
                             order: 3
@@ -125,7 +107,6 @@ const FormA = () => {
                                 onBlur={handleBlur}
                                 value={values.password}
                                 style={{
-                                    // padding: "12px 20px",
                                     flex: 1,
                                     order: 3
                                 }}

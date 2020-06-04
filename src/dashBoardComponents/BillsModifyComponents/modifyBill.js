@@ -4,15 +4,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Formik} from "formik";
 import * as Yup from "yup";
-import {postUserData} from "../../redux/actions";
+import {postBill} from "../../redux/actions";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import ProgressBar from "react-bootstrap/ProgressBar";
 import Dates from "./DatePicker";
 import moment from "moment";
+import {useDispatch} from "react-redux";
 
 const ModifyBill = (props) => {
-    const [item, setItem] = useState({cat: "", id: "", amount: " "})
+    const dispatch = useDispatch();
+    const nowDate = moment(new Date()).format("MMMYYYY");
+    const [item, setItem] = useState({cat: "", id:nowDate.toLowerCase()})
     const validationSchema = Yup.object().shape({
         amount:Yup.number().moreThan(-1,  "Must be 0 or positive number").required(),
         cat:Yup.string().required()
@@ -23,19 +25,10 @@ const ModifyBill = (props) => {
 
          setItem({
              ...item,
-             id: dateSelected
+             id: dateSelected.toLowerCase()
          })
         console.log(dateSelected)
     }
-    // const handleChange = (event) => {
-    //     let valueSelected = event.target.value
-    //     setItem({
-    //         ...item,
-    //         cat: `${valueSelected}`,
-    //
-    //     });
-    //
-    // };
 
 
     return (
@@ -53,9 +46,9 @@ const ModifyBill = (props) => {
 
                         setSubmitting(true);
 
-                         alert(JSON.stringify(values, null, 2));
-                        const obj = {category:values.cat, id:item.id, amount:values.amount};
-                        // dispatch(postUserData(obj));
+                         // alert(JSON.stringify(values, null, 2));
+                        const obj = {category:values.cat.toLowerCase(), id:item.id, amount:values.amount};
+                         dispatch(postBill(obj));
 
 
                         resetForm();

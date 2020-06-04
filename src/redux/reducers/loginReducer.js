@@ -1,5 +1,5 @@
 // import {fetchUserRequest} from "../actions/loginActions"
-import {FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE} from '../actions/types'
+import {FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE, LOG_USEROUT_REQ, LOG_USEROUT_FAIL, LOG_USEROUT_SUCCESS} from '../actions/types'
 
 
 export const initialState = {
@@ -34,6 +34,27 @@ const loginReducer = (state = initialState, action) => {
                 data: [],
 
             };
+        case  LOG_USEROUT_REQ:
+            return {
+                ...state,
+                isLoading: true,
+                data: [],
+                error: []
+            }
+        case LOG_USEROUT_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+                data: [],
+        }
+        case LOG_USEROUT_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error:[],
+                data:[]
+            }
         default:
             return state
 

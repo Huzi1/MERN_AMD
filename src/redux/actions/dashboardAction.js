@@ -8,7 +8,13 @@ import {
     POST_USER_DATA_FAILURE,
     DELETE_CATEGORY_FAIL,
     DELETE_CATEGORY_REQ,
-    DELETE_CATEGORY_SUCCESS
+    DELETE_CATEGORY_SUCCESS,
+    POST_BILL_REQ,
+    POST_BILL_SUCCESS,
+    POST_BILL_FAIL,
+    DELETE_BILL_REQ,
+    DELETE_BILL_FAIL,
+    DELETE_BILL_SUCCESS
 } from './types'
 
 
@@ -58,6 +64,24 @@ export const postUserDataFail = error => {
 
 };
 
+export const postBillReq = () => {
+    return {
+        type: POST_BILL_REQ
+    }
+};
+export const postBillSuccess = data => {
+    return {
+        type: POST_BILL_SUCCESS,
+        payload: data
+    }
+};
+
+export const postBillFail = error => {
+    return {
+        type: POST_BILL_FAIL,
+        payload:error
+    }
+};
 
 export const DeleteCatReq = () => {
     return{
@@ -79,6 +103,27 @@ export const DeleteCatFail = error=>{
     }
 }
 
+export const DeleteBillReq = () =>{
+    return{
+        type:DELETE_BILL_REQ
+    }
+}
+
+export const DeleteBillSuccess = data =>{
+    return{
+        type: DELETE_BILL_SUCCESS,
+        payload:data
+    }
+}
+export const DeleteBillFail = error =>{
+    return{
+        type:DELETE_BILL_FAIL,
+        payload:error
+    }
+}
+
+
+
 export const postUserData = (obj) => {
     return function (dispatch) {
         const user = localStorage.getItem('user')
@@ -95,6 +140,25 @@ export const postUserData = (obj) => {
         })
     }
 };
+
+export const postBill = (obj) =>{
+    return function (dispatch) {
+        const user = localStorage.getItem('user')
+
+        const myObj = {
+            'username': user,
+            'data': obj
+        }
+        dispatch(postBillReq());
+        console.log(myObj)
+        axios.post(apiUrl+ '/update', myObj).then(resp =>{
+            dispatch(postBillSuccess(resp.data))
+        }).catch(error =>{
+            dispatch(postBillFail(error.message))
+        })
+    }
+};
+
 
 export const deleteCat = (obj) => {
     return function (dispatch) {
@@ -117,6 +181,24 @@ export const deleteCat = (obj) => {
 
 };
 
+export const deleteBill = (obj) => {
+    return function (dispatch){
+
+        const user = localStorage.getItem('user')
+
+        const myObj = {
+            'username' :user,
+            'data': obj
+        }
+        dispatch(DeleteBillReq());
+
+        axios.delete(apiUrl + '/delBill',{params: myObj}).then(resp =>{
+            dispatch(DeleteBillSuccess(resp.data))
+        }).catch(error => {
+            dispatch(DeleteBillFail(error.message))
+        })
+    }
+};
 
 export const fetchUserData = (obj) => {
     return function (dispatch) {

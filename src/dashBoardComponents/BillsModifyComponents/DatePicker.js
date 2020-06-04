@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import DatePicker from 'react-date-picker';
-// import DatePicker from 'react-date-picker/dist/entry.nostyle';
 
 const Dates = (props) => {
     const [data, setData] = useState({myDate: new Date()});
