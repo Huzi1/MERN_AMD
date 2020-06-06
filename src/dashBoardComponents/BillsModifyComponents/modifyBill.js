@@ -27,7 +27,7 @@ const ModifyBill = (props) => {
              ...item,
              id: dateSelected.toLowerCase()
          })
-        console.log(dateSelected)
+
     }
 
 

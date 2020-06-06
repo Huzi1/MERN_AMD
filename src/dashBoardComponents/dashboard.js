@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import Bills from "./billsNav";
 import HomeNav from "./homeNav"
-import SideNav, {Toggle, Nav, NavItem, NavIcon, NavText} from '@trendmicro/react-sidenav'
+import SideNav, {NavItem, NavIcon, NavText} from '@trendmicro/react-sidenav'
 import util from "../utils/util"
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser, fetchUserData, logOut} from "../redux/actions";
+import {fetchUserData, logOut} from "../redux/actions";
 import Spinner from "react-bootstrap/Spinner";
 import {Redirect} from "react-router-dom";
 
 
 const DashBoard = (props) => {
 
-    console.log("My Dashboard props", props)
+
     const dispatch = useDispatch();
     let bills, categories, titleSumAmount;
     const [item, setitem] = useState({eventKey: "home"});
@@ -19,7 +19,7 @@ const DashBoard = (props) => {
     useEffect(() => {
             const obj = localStorage.getItem('user');
             const myUser = {username: obj};
-            // console.log(myUser);
+
             myUser && dispatch(
                 fetchUserData(myUser)
             );
@@ -35,14 +35,14 @@ const DashBoard = (props) => {
 
     if (userData.length !== 0) {
 
-        // console.log("hello", userData)
+
         if (userData.code === 200) {
 
             bills = userData.doc.data
-            // console.log("parent bill", bills)
+
             categories = util.ArrayToSet(bills);
 
-            // console.log("cat here", categories);
+
             titleSumAmount = util.BillBykey(categories, bills);
 
 
@@ -57,17 +57,16 @@ const DashBoard = (props) => {
                 overflow: 'auto'
             }}>
                 {
-                    item.eventKey === "home"
-                        ? <h1> Hello {item.eventKey} </h1>
-                        : <div className="theme__status" style={{background: "#0097A7"}}> .</div>
+                    item.eventKey !== "home"
+                        ? <div className="theme__status" style={{background: "#0097A7"}}> .</div>
+                        : null
 
                 }
 
                 {(() => {
                     switch (item.eventKey) {
                         case "home":
-                            // return <h2>HOME</h2>
-                            console.log("in switch")
+
                             if (userData.length !== 0) {
 
                                 return <HomeNav title={categories} billSum={titleSumAmount} bills={bills}/>;
@@ -77,8 +76,9 @@ const DashBoard = (props) => {
 
                         case "charts":
                             if (userData.length !== 0) {
-
                                 return <Bills activeBills={bills} cat={categories}/>;}
+                            else
+                                return <Spinner animation="grow"/>
                             break;
                         case "log-out":
                             localStorage.removeItem('user');
@@ -104,12 +104,12 @@ const DashBoard = (props) => {
                      onSelect={(selected) => {
                          // Add your code here
                          if (selected === "charts") {
-                             // console.log(selected)
+
                              setitem({eventKey: "charts"})
                          } else if (selected === 'log-out') {
                              setitem({eventKey: "log-out"})
                          } else {
-                             // console.log(selected)
+
                              setitem({eventKey: "home"})
                          }
 
@@ -135,7 +135,7 @@ const DashBoard = (props) => {
                     </NavItem>
                     <NavItem eventKey="log-out">
                         <NavIcon>
-                            <i className="fa fa-sign-out" aria-hidden="true" style={{fontSize: '1.75em'}}></i>
+                            <i className="fa fa-sign-out" aria-hidden="true" style={{fontSize: '1.75em'}}/>
                         </NavIcon>
                         <NavText>
                             Log-out

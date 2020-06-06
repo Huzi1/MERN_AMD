@@ -1,22 +1,22 @@
 function ArrayToSet(object) {
-    // console.log(object)
+
     const mySet = new Set()
 
     object.forEach(function (item, index) {
         mySet.add(item.category)
     });
-    console.log(mySet)
+
     const myArr = [...mySet]
-    // console.log(myArr)
+    //
     return myArr
 }
 
 function billKeyByYear(key, prevYear, currYear, bills) {
     let data1 =0, data2 = 0;
-    console.log(key)
-    console.log("bills Util", bills)
-    console.log("prevYear Util",prevYear)
-    console.log("currYear Util",currYear)
+
+
+
+
     bills.forEach(function (item, index) {
         if(item.id != null) {
             if (item.category === key.toLowerCase() && item.id.includes(currYear)) {
@@ -29,15 +29,15 @@ function billKeyByYear(key, prevYear, currYear, bills) {
 
         }
     })
-        console.log("data1",data1)
-        console.log("data2",data2)
+
+
     return [data1,data2];
 }
 function sortBillByYear (keys, prevYear, currYear, bills){
     let dataSet1 =[]
     let dataSet2 =[]
-    console.log("prevYear",prevYear)
-    console.log("prevYear",currYear)
+
+
     keys.forEach(function (item){
       let tempArr = billKeyByYear(item,prevYear,currYear,bills)
         dataSet1.push(tempArr[0])
@@ -70,7 +70,7 @@ function BillBykey(keys, bill) {
         tempArr = []
     })
 
-    // console.log("Creating Obj" + JSON.stringify(myDict))
+    //
     return JSON.stringify(myDict)
 }
 
@@ -83,7 +83,7 @@ function toUpperCase(arr) {
 
     })
 
-    // console.log(myArr)
+    //
     return myArr
 }
 function yearlyTotalBillSum (bill){
@@ -110,7 +110,7 @@ function billSumMonthly (month, arr){
 
 function billSum(arr, object) {
     const obj = JSON.parse(object)
-    // console.log("In billsum" + obj);
+    //
     const myArr = []
 
     function getSum(total, num) {
@@ -119,16 +119,16 @@ function billSum(arr, object) {
 
     arr.forEach(function (item) {
         const sum = (obj[`${item}`])
-        // console.log(sum.reduce(getSum,0))
+        //
         myArr.push(sum.reduce(getSum, 0))
     })
-    // console.log(myArr)
+    //
 
     return myArr
 }
 
 function RandomColorCode(num) {
-    // console.log(num)
+    //
     const myArr = []
 
     function dynamicColors() {
@@ -138,31 +138,31 @@ function RandomColorCode(num) {
 
         let x = "rgb(" + r + ',' + g + ',' + b + ")"
 
-        // console.log(x)
+        //
         return x;
     }
 
     for (let i = 0; i <= num; i++) {
         let color = dynamicColors()
-        // console.log(color)
+        //
         myArr.push(color)
     }
 
 
-    // console.log("hello"+myArr)
+    //
     return myArr
 
 }
 
 function sortSelectedBill(title, arrObj) {
     let mySelectedArracy = [];
-    console.log(arrObj)
+
     arrObj.forEach(function (item) {
         if (item.category === title && item.id != null) {
             mySelectedArracy.push(item)
         }
     })
-    console.log("My selected Array", mySelectedArracy)
+
 
     return mySelectedArracy;
 };

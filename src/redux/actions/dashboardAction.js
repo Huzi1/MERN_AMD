@@ -14,13 +14,17 @@ import {
     POST_BILL_FAIL,
     DELETE_BILL_REQ,
     DELETE_BILL_FAIL,
-    DELETE_BILL_SUCCESS
+    DELETE_BILL_SUCCESS,
+    USER_REGIS_REQ,
+    USER_REGIS_FAIL,
+    USER_REGIS_SUCCESS
+
 } from './types'
 
 
 
-const apiUrl = 'http://localhost:8000';
-
+// const apiUrl = 'http://localhost:8000';
+ const apiUrl = 'http://3.134.98.84:8000'
 
 export const fetchUserDataReq = () => {
     return {
@@ -122,6 +126,32 @@ export const DeleteBillFail = error =>{
     }
 }
 
+export const RegisReq = () => {
+    return {
+        type:USER_REGIS_REQ
+
+    }
+}
+
+export const RegisSuccess = () => {
+    return {
+        type:USER_REGIS_SUCCESS
+    }
+}
+export const RegisFail = (error) =>{
+    return {
+        type:USER_REGIS_FAIL,
+        payload:error
+    }
+}
+
+export const postNewUser = () => {
+    return function (dispatch){
+
+    }
+
+
+}
 
 
 export const postUserData = (obj) => {
@@ -203,7 +233,7 @@ export const deleteBill = (obj) => {
 export const fetchUserData = (obj) => {
     return function (dispatch) {
 
-        console.log("obj", obj);
+        // console.log("obj", obj);
 
         dispatch(fetchUserDataReq());
         axios.get(apiUrl + '/getData', {params: obj}).then(resp => {

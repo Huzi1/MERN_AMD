@@ -13,7 +13,10 @@ import {
     POST_BILL_FAIL,
     DELETE_BILL_REQ,
     DELETE_BILL_FAIL,
-    DELETE_BILL_SUCCESS
+    DELETE_BILL_SUCCESS,
+    USER_REGIS_FAIL,
+    USER_REGIS_REQ,
+    USER_REGIS_SUCCESS
 } from '../actions/types'
 
 
@@ -21,7 +24,8 @@ export const initialState = {
     isLoading: false,
     data: [],
     bills: [],
-    error: []
+    error: [],
+    percentage:0
 
 };
 
@@ -55,7 +59,8 @@ const dashboardReducer = (state = initialState, action) => {
         case  POST_USER_DATA_REQUEST:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                percentage: 0
             };
         case POST_USER_DATA_SUCCESS:
             return {
@@ -63,14 +68,16 @@ const dashboardReducer = (state = initialState, action) => {
                 isLoading: false,
                 bills: action.payload.doc.data,
                 data: action.payload,
-                error: []
+                error: [],
+                percentage: 100
 
             };
         case POST_USER_DATA_FAILURE:
             return {
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error: action.payload,
+                percentage: 0
             };
         case DELETE_CATEGORY_REQ:
             return {
@@ -131,6 +138,22 @@ const dashboardReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: action.payload
 
+            }
+        case USER_REGIS_REQ:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case USER_REGIS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false
+            }
+        case USER_REGIS_FAIL:
+            return {
+                ...state,
+                isLoading: true,
+                error:action.payload
             }
         default:
             return state

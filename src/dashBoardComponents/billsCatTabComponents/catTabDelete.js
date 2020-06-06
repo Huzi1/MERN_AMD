@@ -29,7 +29,7 @@ const Delete = (props) => {
             ...item,
             isShow: true
         });
-        console.log(item.value);
+
         let myObj = {category: item.value.toLowerCase(), id: '', amount: ''}
         dispatch(deleteCat(myObj));
 

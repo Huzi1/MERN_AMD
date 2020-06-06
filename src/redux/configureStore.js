@@ -6,9 +6,9 @@ import thunk from "redux-thunk";
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
-store.subscribe(()=>{
-    // console.log('')
-    console.log("store state updated",store.getState())
-})
+// store.subscribe(()=>{
+//     // console.log('')
+//     console.log("store state updated",store.getState())
+// })
 
 export default store

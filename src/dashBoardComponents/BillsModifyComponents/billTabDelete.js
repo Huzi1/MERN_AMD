@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {deleteBill, postBill} from "../../redux/actions";
+import React, {useState} from "react";
+import {deleteBill} from "../../redux/actions";
 import {Formik} from "formik";
 
 import * as Yup from "yup";
@@ -17,7 +17,7 @@ const DeleteBill = (props) => {
     const dispatch = useDispatch();
     const [state, setState] = useState({catSelected: "", displayBill: [], isShow: false})
     const {active, title} = props
-    console.log(active, title)
+
     const validationSchema = Yup.object()
     let display = []
     const handleBillChange = (e) => {
@@ -38,12 +38,12 @@ const DeleteBill = (props) => {
             })
         }
 
-        state.isShow && console.log("working", state)
+
     }
-    useEffect(() => {
-            console.log("working", state)
-        }, [state]
-    )
+    // useEffect(() => {
+    //         console.log("working", state)
+    //     }, [state]
+    // )
     return (
         <>
             <Formik validationSchema={validationSchema}

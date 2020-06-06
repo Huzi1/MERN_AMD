@@ -1,21 +1,34 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {useSelector, useDispatch} from "react-redux";
 import {fetchUser} from "../redux/actions/loginActions";
 import Error from "./Error";
 import {Redirect} from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 
 
 const FormA = () => {
 
     const dispatch = useDispatch();
+    const [state, setState] = useState(false)
     const validationSchema = Yup.object().shape({
         userName: Yup.string().min(3, "Must have atleast 3 Characters").max(255, "Must" +
             " be shorter than 255").required("Must enter a name"),
         password: Yup.string().required("Please enter your password")
     });
-    const loading = useSelector(state => state.loginReducer.isLoading);
+
+    const handleSpin = (e) => {
+        console.log(state)
+        setState(true);
+    }
+    useEffect(() =>{
+
+        console.log('spinner',state);
+    },[state])
+
+
     const loginData = useSelector(
         state => state.loginReducer.data
     );
@@ -23,14 +36,13 @@ const FormA = () => {
         state => state.loginReducer.error
     );
 
-    if (loginData.length != 0) {
+    if (loginData.length !== 0) {
 
         if (loginData.code === 200) {
-            console.log("loginData", loginData);
+            // setState(false)
+
             localStorage.setItem("user", loginData.doc.username);
 
-
-            const bills = loginData.doc.data;
 
             return (<Redirect
                 to={{
@@ -54,6 +66,7 @@ const FormA = () => {
 
                     onSubmit={(values, {setSubmitting, resetForm}) => {
                         setSubmitting(true);
+
                         //alert(JSON.stringify(values, null, 2));
                         const obj = {username: values.userName, password: values.password};
                         dispatch(
@@ -63,6 +76,7 @@ const FormA = () => {
                         setSubmitting(false)
                     }}>
                 {({
+
                       values,
                       errors,
                       touched,
@@ -84,7 +98,7 @@ const FormA = () => {
                                 type="text"
                                 name="userName"
                                 id="userName"
-                                placeholder={"Enter your username"}
+                                placeholder={"Enter your username(Hint:huz1)"}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.userName}
@@ -102,7 +116,7 @@ const FormA = () => {
                                 type="password"
                                 name="password"
                                 id="psw"
-                                placeholder={"Enter your password"}
+                                placeholder={"Enter your password(Hint:admin1)"}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
@@ -120,7 +134,24 @@ const FormA = () => {
                             flex: 1,
                             order: 4
                         }}>
-                            <button id="submit" type="submit" disabled={isSubmitting}>Submit</button>
+                            {
+                                state
+                                    ? <span><Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                Loading...
+                                </span>
+                                    :
+                                    <button id="submit" type="submit" onClick={(e) => {
+                                                  handleSubmit(e);
+                                                  handleSpin(e)
+                                              }}
+                                            disabled={isSubmitting}>Submit</button>
+                            }
                         </div>
                     </form>
 

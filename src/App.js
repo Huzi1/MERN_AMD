@@ -12,19 +12,19 @@ import Routes from "./Routes";
 import {Provider} from "react-redux";
 
 
-const App= () => {
+const App = () => {
 
-        return (
+    return (
 
-                      <Provider store={store}>
+        <Provider store={store}>
 
-                <div className="App">
-                    <Routes />
+            <div className="App">
+                <Routes/>
 
-                </div>
-                      </Provider>
+            </div>
+        </Provider>
 
-        );
+    );
 
 };
 
