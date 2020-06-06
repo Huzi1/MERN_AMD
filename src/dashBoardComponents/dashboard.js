@@ -72,14 +72,14 @@ const DashBoard = (props) => {
                                 return <HomeNav title={categories} billSum={titleSumAmount} bills={bills}/>;
                             } else
                                 return <Spinner animation="grow"/>
-                            break;
+
 
                         case "charts":
                             if (userData.length !== 0) {
                                 return <Bills activeBills={bills} cat={categories}/>;}
                             else
                                 return <Spinner animation="grow"/>
-                            break;
+
                         case "log-out":
                             localStorage.removeItem('user');
                             if (localStorage.getItem('user') == null) {

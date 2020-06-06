@@ -133,22 +133,35 @@ export const RegisReq = () => {
     }
 }
 
-export const RegisSuccess = () => {
+export const RegisSuccess = data => {
     return {
-        type:USER_REGIS_SUCCESS
+        type:USER_REGIS_SUCCESS,
+        payload:data
     }
 }
-export const RegisFail = (error) =>{
+export const RegisFail = error =>{
     return {
         type:USER_REGIS_FAIL,
         payload:error
     }
 }
 
-export const postNewUser = () => {
+export const postNewUser = (obj) => {
     return function (dispatch){
 
+        console.log(obj);
+
+        dispatch(RegisReq());
+
+        axios.post(apiUrl + '/regis', obj).then(resp => {
+            console.log("in action response", resp.data);
+            dispatch(RegisSuccess(resp.data));
+        }).catch(error => {
+            console.log("in action error response", error.message);
+            dispatch(RegisFail(error.message))
+        })
     }
+
 
 
 }

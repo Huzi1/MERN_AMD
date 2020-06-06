@@ -142,18 +142,23 @@ const dashboardReducer = (state = initialState, action) => {
         case USER_REGIS_REQ:
             return{
                 ...state,
-                isLoading: true
+                isLoading: true,
+                data:{},
+                error:[]
             }
         case USER_REGIS_SUCCESS:
             return {
                 ...state,
-                isLoading: false
+                isLoading: false,
+                data:action.payload,
+                error:[]
             }
         case USER_REGIS_FAIL:
             return {
                 ...state,
                 isLoading: true,
-                error:action.payload
+                error:action.payload,
+                data:[]
             }
         default:
             return state

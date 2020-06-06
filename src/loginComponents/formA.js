@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {useSelector, useDispatch} from "react-redux";
 import {fetchUser} from "../redux/actions/loginActions";
 import Error from "./Error";
 import {Redirect} from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
 
@@ -20,13 +19,9 @@ const FormA = () => {
     });
 
     const handleSpin = (e) => {
-        console.log(state)
         setState(true);
     }
-    useEffect(() =>{
 
-        console.log('spinner',state);
-    },[state])
 
 
     const loginData = useSelector(
