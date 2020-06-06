@@ -23,8 +23,8 @@ import {
 
 
 
-// const apiUrl = 'http://localhost:8000';
- const apiUrl = 'http://3.134.98.84:8000'
+const apiUrl = 'http://localhost:8000';
+//  const apiUrl = 'http://3.134.98.84:8000'
 
 export const fetchUserDataReq = () => {
     return {
