@@ -18,39 +18,36 @@ const connectDB = async () => {
     );
     console.log('DB connected...!');
 };
-// db.on('error', console.error.bind(console, 'connection error'));
-//
-// db.once('open', function() {
-//     console.log('DB connected...!');
-// })
+
 
 function registerUser(obj) {
-    //Compile schema to a model
-
-    const user1 = new userSchema({
-        _id: new mongoose.Types.ObjectId(),
-        firstName: obj.firstName,
-        lastName: obj.lastName,
-        password: obj.password,
-        username: obj.username,
-        data: obj.data
-
-
-    });
-    user1.save().then(result => {
-        console.log(result + "Registered")
-
-    }).catch(err => console.log(err))
-// user1.save(function(err,user){
-//     if (err) return console.error(err);
-//     console.log(user.username + "registered")
-// })
-
-}
+    return new Promise(function (resolve, reject) {
+        //Compile schema to a model
+        const user1 = new userSchema({
+            _id: new mongoose.Types.ObjectId(),
+            firstName: obj.firstName,
+            lastName: obj.lastName,
+            password: obj.password,
+            username: obj.username,
+            data: obj.data
+        });
+        user1.save().then(function (product) {
+            if(product){
+                console.log('res resolve in db',product)
+                return resolve({code:200, res:product})
+            }
+            // else
+            //     console.log("res reject in db", product)
+            //     return reject({code:202})
+        }).catch(function (e) {
+            console.log("err caught",e)
+        return  reject()
+    })
+    })}
 
 async function validate(obj) {
-    let check = await User.exists({username: obj.username, password:obj.password});
-    console.log(check);
+    let check = await User.exists({username: obj.username, password: obj.password});
+    // console.log(check);
 
     if (check) {
         return 202
@@ -62,17 +59,17 @@ async function validate(obj) {
 function update(obj, newBill) {
     return new Promise(function (resolve, reject) {
 
-        let qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data": newBill}},{new: true});
+            let qry = User.findOneAndUpdate({username: obj.username}, {$push: {"data": newBill}}, {new: true});
 
             qry.exec(function (err, user) {
 
                 if (err) {
-                    console.log(err)
+                    // console.log(err)
                     return reject({code: 404})
                 } else {
-                    // console.log(user)
 
-                    return resolve({code:200,doc: {data: user.data}})
+
+                    return resolve({code: 200, doc: {data: user.data}})
                 }
             })
 
@@ -80,24 +77,84 @@ function update(obj, newBill) {
         }
     );
 }
+
 //delete array item in document
 function pullArrItem(obj) {
-    return new Promise (function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
+        const bodyData = JSON.parse(obj.data)
 
-        let qry = User.update({username:obj.username}, {$pull:{"data": {id:obj.data.id, category: obj.data.category}}});
+        let qry = User.findOneAndUpdate({username: obj.username}, {
+            $pull: {
+                "data": {
+                    id: bodyData.id,
+                    category: bodyData.category
+                }
+            }
+        }, {new: true});
 
         qry.exec(function (err, userDoc) {
-            if(err){
-                console.log(err)
-                return reject({code:404})
-            }else{
-                console.log(userDoc + "pull successful")
-                return resolve({code:200})
+            if (err) {
+                // console.log(err)
+                return reject({code: 404})
+            } else {
+
+
+                return resolve({code: 200, doc: userDoc})
+
             }
         })
     });
 
 }
+
+// Pull arr item using object
+function pullObjArrItem(obj) {
+    return new Promise(function (resolve, reject) {
+        const data = obj.data
+
+        let qry = User.findOneAndUpdate({username: obj.username}, {
+            $pull: {
+                "data": {
+                    id: data.id,
+                    category: data.category
+                }
+            }
+        }, {new: true});
+
+        qry.exec(function (err, userDoc) {
+            if (err) {
+                // console.log(err)
+                return reject({code: 404})
+            } else {
+
+
+                return resolve({code: 200, doc: userDoc})
+
+            }
+        })
+    });
+
+}
+
+function pullCat(obj) {
+    return new Promise(function (resolve, reject) {
+        let cat = JSON.parse(obj.data)
+
+        let qry = User.findOneAndUpdate({username: obj.username}, {$pull: {"data": {category: cat.category}}}, {new: true});
+
+        qry.exec(function (err, userDoc) {
+            if (err) {
+                // console.log(err)
+                return reject({code: 404})
+            } else {
+
+                return resolve({code: 200, doc: userDoc})
+            }
+        })
+    });
+
+}
+
 
 function getUserDoc(obj) {
     return new Promise(function (resolve, reject) {
@@ -106,10 +163,10 @@ function getUserDoc(obj) {
 
         qry.exec(function (err, user) {
             if (err) {
-                console.log(err)
+                // console.log(err)
                 return reject({code: 404})
             } else {
-                console.log("hello User",user)
+
                 return resolve({code: 200, doc: user[0]});
             }
 
@@ -125,7 +182,9 @@ module.exports = {
     update,
     connectDB,
     getUserDoc,
-    pullArrItem
+    pullArrItem,
+    pullCat,
+    pullObjArrItem
 
 }
 
