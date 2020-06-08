@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Error from "./Error";
 import {Formik} from "formik";
 import * as Yup from "yup";
@@ -16,9 +16,9 @@ function FormB() {
         userName: Yup.string().min(3, "Must have at least 3 Characters").max(255, "Must" +
             " be shorter than 255").required("Must enter a name").lowercase("must be in lowercase"),
         password: Yup.string().required("Please enter your password"),
-        confPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
-        fName: Yup.string().min(3, "Must be at least 3 characters").max(255, "Must be shorter than 255 characters").required(),
-        lName: Yup.string().min(3, "Must be at least 3 characters").max(255, "Must be shorter than 255 characters").required(),
+        confPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required("Re-type password"),
+        fName: Yup.string().min(3, "Must be at least 3 characters").max(255, "Must be shorter than 255 characters").required("first name is required"),
+        lName: Yup.string().min(3, "Must be at least 3 characters").max(255, "Must be shorter than 255 characters").required("last name is required"),
     });
     const modelHandle = () => {
         dispatch(logOut())
@@ -30,8 +30,8 @@ function FormB() {
 
     const registerStatus = useSelector(state => state.dashboardReducer.isLoading);
 
-    const registerUserError = useSelector(state => state.dashboardReducer.error
-    );
+    // const registerUserError = useSelector(state => state.dashboardReducer.error
+    // );
 
 
 
@@ -125,11 +125,7 @@ function FormB() {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.confPassword}
-                                // style={{
-                                //
-                                //     flex: 1,
-                                //     order: 4
-                                // }}
+
                                 className={touched.confPassword && errors.confPassword ? "has-error" : null}
                             />
                             <Error touched={touched.confPassword} message={errors.confPassword}/>
@@ -185,7 +181,8 @@ function FormB() {
                                 Loading...
                                 </span>
                             :
-                            <button id="submit" type="submit" disabled={isSubmitting}>Register</button>}
+                            <button id="submit" type="submit" disabled={isSubmitting}>Register</button>
+                        }
 
                             {
                                 (() => {

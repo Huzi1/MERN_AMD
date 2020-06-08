@@ -2,18 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'font-awesome/css/font-awesome.min.css';
-import thunkMiddleware from 'redux-thunk'
-import rootReducer from "./redux/reducers/rootReducer";
-import {createStore, applyMiddleware} from 'redux';
+
 import store from './redux/configureStore'
 
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 
 
-// store.dispatch(fetchAllPosts());
+
 
 
 function MyApp() {

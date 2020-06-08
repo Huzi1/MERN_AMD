@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import util from "../../src/utils/util";
 import {Radar} from 'react-chartjs-2';
 

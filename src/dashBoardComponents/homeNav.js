@@ -52,7 +52,7 @@ const HomeNav = (props) => {
                 <br/>
                 <Row className="justify-content-md-center" style={{padding: "2%"}}>
                     <Col sm={4}>
-                        <LinePlot title={title} bill={bills}/>
+                        <LinePlot  bill={bills}/>
                     </Col>
 
                 </Row>

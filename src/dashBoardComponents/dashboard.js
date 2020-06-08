@@ -7,6 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchUserData, logOut} from "../redux/actions";
 import Spinner from "react-bootstrap/Spinner";
 import {Redirect} from "react-router-dom";
+import aboutMe from "./aboutMe";
+import AboutMe from "./aboutMe";
 
 
 const DashBoard = (props) => {
@@ -23,15 +25,15 @@ const DashBoard = (props) => {
             myUser && dispatch(
                 fetchUserData(myUser)
             );
-        }, [item]
+        }, [item, dispatch]
     );
-    const loading = useSelector(state => state.dashboardReducer.isLoading);
+    // const loading = useSelector(state => state.dashboardReducer.isLoading);
     const userData = useSelector(
         state => state.dashboardReducer.data
     );
-    const userError = useSelector(
-        state => state.dashboardReducer.error
-    );
+    // const userError = useSelector(
+    //     state => state.dashboardReducer.error
+    // );
 
     if (userData.length !== 0) {
 
@@ -57,7 +59,7 @@ const DashBoard = (props) => {
                 overflow: 'auto'
             }}>
                 {
-                    item.eventKey !== "home"
+                    item.eventKey !== "home" &&  item.eventKey !== "about"
                         ? <div className="theme__status" style={{background: "#0097A7"}}> .</div>
                         : null
 
@@ -76,9 +78,11 @@ const DashBoard = (props) => {
 
                         case "charts":
                             if (userData.length !== 0) {
-                                return <Bills activeBills={bills} cat={categories}/>;}
-                            else
+                                return <Bills activeBills={bills} cat={categories}/>;
+                            } else
                                 return <Spinner animation="grow"/>
+                        case "about":
+                            return <AboutMe />
 
                         case "log-out":
                             localStorage.removeItem('user');
@@ -108,6 +112,9 @@ const DashBoard = (props) => {
                              setitem({eventKey: "charts"})
                          } else if (selected === 'log-out') {
                              setitem({eventKey: "log-out"})
+                         } else if (selected === "about") {
+
+                             setitem({eventKey: "about"})
                          } else {
 
                              setitem({eventKey: "home"})
@@ -142,6 +149,17 @@ const DashBoard = (props) => {
                         </NavText>
 
                     </NavItem>
+                    <NavItem eventKey="about">
+                        <NavIcon>
+                            <i className="fa fa-info-circle" aria-hidden="true" style={{fontSize: '1.75em'}}/>
+                        </NavIcon>
+                        <NavText>
+                            about
+                        </NavText>
+
+                    </NavItem>
+
+
                 </SideNav.Nav>
 
 

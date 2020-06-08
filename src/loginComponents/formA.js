@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {useSelector, useDispatch} from "react-redux";
@@ -11,19 +11,21 @@ import Spinner from "react-bootstrap/Spinner";
 const FormA = () => {
 
     const dispatch = useDispatch();
-    const [state, setState] = useState(false)
+    // const [state, setState] = useState(false)
     const validationSchema = Yup.object().shape({
         userName: Yup.string().min(3, "Must have atleast 3 Characters").max(255, "Must" +
-            " be shorter than 255").required("Must enter a name"),
+            " be shorter than 255").required("Must enter a name").lowercase("must be in lowercase"),
         password: Yup.string().required("Please enter your password")
     });
 
-    const handleSpin = (e) => {
-        setState(true);
-    }
+    // const handleSpin = (e) => {
+    //     setState(false);
+    // }
 
 
-
+    const loading = useSelector(
+        state => state.loginReducer.isLoading
+    );
     const loginData = useSelector(
         state => state.loginReducer.data
     );
@@ -51,6 +53,7 @@ const FormA = () => {
             />)
         } else {
             console.log("loginError", loginError);
+
         }
     }
 
@@ -83,7 +86,7 @@ const FormA = () => {
 
 
                     //    formik in control of form submit event
-                    <form onSubmit={handleSubmit} id="log-form">
+                    <form onSubmit={handleSubmit} id="log-form2">
 
                         <div style={{
                             flex: 1,
@@ -92,7 +95,7 @@ const FormA = () => {
                             <input
                                 type="text"
                                 name="userName"
-                                id="userName"
+                                id="uName"
                                 placeholder={"Enter your username(Hint:huz1)"}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -110,7 +113,7 @@ const FormA = () => {
                             <input
                                 type="password"
                                 name="password"
-                                id="psw"
+                                id="psw2"
                                 placeholder={"Enter your password(Hint:admin1)"}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -130,7 +133,7 @@ const FormA = () => {
                             order: 4
                         }}>
                             {
-                                state
+                                loading
                                     ? <span><Spinner
                                         as="span"
                                         animation="grow"
@@ -141,13 +144,22 @@ const FormA = () => {
                                 Loading...
                                 </span>
                                     :
-                                    <button id="submit" type="submit" onClick={(e) => {
-                                                  handleSubmit(e);
-                                                  handleSpin(e)
+                                    <button id="submit2" type="submit" onClick={(e) => {
+                                                  handleSubmit(e)
                                               }}
                                             disabled={isSubmitting}>Submit</button>
                             }
+                            { (()=>{
+                                if(loginData && loginData){
+                                    if(loginData === 204){
+                                        return <span> <h4 style={{color: "#c51c1c"}}>Incorrect username or password</h4></span>
+                                    }
+                                }
+                            })()
+
+                        }
                         </div>
+
                     </form>
 
 

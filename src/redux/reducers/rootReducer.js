@@ -2,7 +2,7 @@ import { combineReducers} from 'redux';
 
 import loginReducer from './loginReducer';
 import dashboardReducer from "./dashboardReducer";
-import {LOG_USEROUT_REQ} from "../actions/types";
+
 
 
 const appReducer = combineReducers({

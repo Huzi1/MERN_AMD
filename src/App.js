@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-// import Amplify, { API } from 'aws-amplify';
-// import awsconfig from './aws-exports';
+
 import './App.css';
 import store from './redux/configureStore'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';

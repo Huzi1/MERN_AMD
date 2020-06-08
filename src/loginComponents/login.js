@@ -4,8 +4,7 @@ import FormA from "./formA";
 import FormB from "./formB";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Row from "react-bootstrap/Row";
-import TechStack from "./techStackHeader";
+
 
 
 function Login() {
@@ -24,7 +23,7 @@ function Login() {
                     position: "relative",
                     display: "flex"
                 }}>
-                    <img src={loginImg} style={{
+                    <img src={loginImg} alt=""style={{
                         flex: "1",
                         width: "100%",
                         padding: "5%"
