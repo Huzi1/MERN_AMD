@@ -26,7 +26,10 @@ const HorizontalPlot = (props) => {
     return (
 
         <>
-            <h2>Horizontal Bar </h2>
+            <h2 style={{
+                fontFamily: "verdana",
+                    color: "rgb(55, 0, 179)"
+            }}>Horizontal Bar </h2>
             <HorizontalBar data={data}/>
 
         </>

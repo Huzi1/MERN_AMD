@@ -49,7 +49,10 @@ const RadarPlot = (props) => {
     return (
 
         <>
-            <h2>Total Bills in $A </h2>
+            <h2 style={{
+                fontFamily: "verdana",
+                    color: "rgb(55, 0, 179)"
+            }}>Total Bills in $A </h2>
             <Radar data={data}/>
 
         </>

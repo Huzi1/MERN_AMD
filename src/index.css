@@ -200,7 +200,9 @@ a:hover {
 
 
 }
-
+#mySidebar{
+    background: #3700B3 !important;
+}
 #main-box {
 
     display: flex;

@@ -15,7 +15,10 @@ const HomeNav = (props) => {
 
     return (
         <>
-            <h1> My Bills</h1>
+            <h1 style={{
+                fontFamily: "verdana",
+                    color: "rgb(55, 0, 179)"
+            }}> My Bills</h1>
 
             <Container fluid>
                 <Row style={{padding: "2%"}}>

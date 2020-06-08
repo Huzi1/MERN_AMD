@@ -34,7 +34,11 @@ const DashBoard = (props) => {
     // const userError = useSelector(
     //     state => state.dashboardReducer.error
     // );
+<<<<<<< HEAD
 
+=======
+    // console.log(document.getElementById("mySidebar").classList.contains("sidenav---sidenav---_2tBP sidenav---expanded---1KdUL"))
+>>>>>>> about me
     if (userData.length !== 0) {
 
 
@@ -50,13 +54,23 @@ const DashBoard = (props) => {
 
         }
     }
+    const handleToggle = ()=>{
+        if (document.getElementById("mySidebar").className.includes('collapsed')){
 
+            document.getElementById("myContent").style.marginLeft = "240px"
+        }
+        else
+            document.getElementById("myContent").style.marginLeft = "64px"
+    }
     return (
         <>
-            <div className="scroll" style={{
-                marginLeft: '64px',
+
+            <div id={"myContent"} className="scroll" style={{
+
                 padding: '15px 20px 0px',
-                overflow: 'auto'
+                overflow: 'auto',
+                marginLeft: "64px"
+
             }}>
                 {
                     item.eventKey !== "home" &&  item.eventKey !== "about"
@@ -104,7 +118,7 @@ const DashBoard = (props) => {
 
             </div>
 
-            <SideNav id={"mySidebar"}
+            <SideNav onToggle={handleToggle} id={"mySidebar"}
                      onSelect={(selected) => {
                          // Add your code here
                          if (selected === "charts") {
@@ -121,7 +135,8 @@ const DashBoard = (props) => {
                          }
 
                      }}>
-                <SideNav.Toggle/>
+                {/*expanded---262ja*/}
+                <SideNav.Toggle id={"toggle"}/>
                 <SideNav.Nav defaultSelected="home">
                     <NavItem eventKey="home">
                         <NavIcon>

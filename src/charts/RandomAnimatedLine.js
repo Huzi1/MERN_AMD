@@ -36,7 +36,10 @@ const LinePlot = (props) => {
     return (
 
         <>
-
+            <h2 style={{
+                fontFamily: "verdana",
+                    color: "rgb(55, 0, 179)"
+            }}>Amount spend monthly in $A </h2>
             <Line data={data}/>
         </>
     )
