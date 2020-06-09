@@ -9,6 +9,8 @@ const db = require('./db');
 
 const app = express();
 
+// app.set('port',9000);
+
 db.connectDB().then(r =>
     console.log('connected'));
 // in order to avoid cors policy error while running react and node server
@@ -72,7 +74,7 @@ app.post('/check', async function (req, res) {
             })
 
         } else {
-            res.end(JSON.stringify(204));
+            res.end(JSON.stringify({code: 204}));
         }
     } catch (err) {
         return res.status(500).send()
@@ -224,4 +226,4 @@ app.post('/formA', function (req, res) {
 });
 
 
-app.listen(8000, () => console.log('Listening on port 8000'));
+app.listen(9000, () => console.log('Listening on port 9000'));
