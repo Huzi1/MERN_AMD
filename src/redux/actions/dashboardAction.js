@@ -22,14 +22,9 @@ import {
 } from './types'
 
 
-
-<<<<<<< HEAD
-// const apiUrl = 'http://localhost:8000';
- const apiUrl = 'http://3.134.98.84:9000'
-=======
 const apiUrl = 'http://localhost:9000';
 //  const apiUrl = 'http://3.134.98.84:9000'
->>>>>>> about me
+
 
 export const fetchUserDataReq = () => {
     return {
@@ -88,71 +83,71 @@ export const postBillSuccess = data => {
 export const postBillFail = error => {
     return {
         type: POST_BILL_FAIL,
-        payload:error
+        payload: error
     }
 };
 
 export const DeleteCatReq = () => {
-    return{
-       type: DELETE_CATEGORY_REQ
+    return {
+        type: DELETE_CATEGORY_REQ
     }
 };
 
-export const DeleteCatSuccess = data =>{
+export const DeleteCatSuccess = data => {
     return {
-        type:DELETE_CATEGORY_SUCCESS,
+        type: DELETE_CATEGORY_SUCCESS,
         payload: data
     }
 }
 
-export const DeleteCatFail = error=>{
+export const DeleteCatFail = error => {
     return {
-        type:DELETE_CATEGORY_FAIL,
+        type: DELETE_CATEGORY_FAIL,
         payload: error
     }
 }
 
-export const DeleteBillReq = () =>{
-    return{
-        type:DELETE_BILL_REQ
+export const DeleteBillReq = () => {
+    return {
+        type: DELETE_BILL_REQ
     }
 }
 
-export const DeleteBillSuccess = data =>{
-    return{
+export const DeleteBillSuccess = data => {
+    return {
         type: DELETE_BILL_SUCCESS,
-        payload:data
+        payload: data
     }
 }
-export const DeleteBillFail = error =>{
-    return{
-        type:DELETE_BILL_FAIL,
-        payload:error
+export const DeleteBillFail = error => {
+    return {
+        type: DELETE_BILL_FAIL,
+        payload: error
     }
 }
 
 export const RegisReq = () => {
     return {
-        type:USER_REGIS_REQ
+        type: USER_REGIS_REQ
 
     }
 }
 
 export const RegisSuccess = data => {
     return {
-        type:USER_REGIS_SUCCESS,
-        payload:data
+        type: USER_REGIS_SUCCESS,
+        payload: data
     }
 }
-export const RegisFail = error =>{
+export const RegisFail = error => {
     return {
-        type:USER_REGIS_FAIL,
-        payload:error
+        type: USER_REGIS_FAIL,
+        payload: error
     }
 }
 
 export const postNewUser = (obj) => {
-    return function (dispatch){
+    return function (dispatch) {
 
         console.log(obj);
 
@@ -168,7 +163,6 @@ export const postNewUser = (obj) => {
     }
 
 
-
 }
 
 
@@ -182,14 +176,14 @@ export const postUserData = (obj) => {
         dispatch(postUserDataReq());
         axios.post(apiUrl + '/update', myObj).then(resp => {
             dispatch(postUserDataSuccess(resp.data))
-          console.log('post esp', resp.data)
+            console.log('post esp', resp.data)
         }).catch(error => {
             dispatch(postUserDataFail(error.message))
         })
     }
 };
 
-export const postBill = (obj) =>{
+export const postBill = (obj) => {
     return function (dispatch) {
         const user = localStorage.getItem('user')
 
@@ -199,9 +193,9 @@ export const postBill = (obj) =>{
         }
         dispatch(postBillReq());
         console.log(myObj)
-        axios.post(apiUrl+ '/update', myObj).then(resp =>{
+        axios.post(apiUrl + '/update', myObj).then(resp => {
             dispatch(postBillSuccess(resp.data))
-        }).catch(error =>{
+        }).catch(error => {
             dispatch(postBillFail(error.message))
         })
     }
@@ -214,14 +208,14 @@ export const deleteCat = (obj) => {
 
         console.log(obj)
         const myObj = {
-            'username' : user,
+            'username': user,
             'data': obj
         }
         console.log("Inside deleteCat", myObj);
         dispatch(DeleteCatReq());
         axios.delete(apiUrl + '/delCat', {params: myObj}).then(resp => {
             dispatch(DeleteCatSuccess(resp.data))
-                console.log('Delete resp', resp.data)
+            console.log('Delete resp', resp.data)
         }).catch(error => {
             dispatch(DeleteCatFail(error.message))
         })
@@ -230,17 +224,17 @@ export const deleteCat = (obj) => {
 };
 
 export const deleteBill = (obj) => {
-    return function (dispatch){
+    return function (dispatch) {
 
         const user = localStorage.getItem('user')
 
         const myObj = {
-            'username' :user,
+            'username': user,
             'data': obj
         }
         dispatch(DeleteBillReq());
 
-        axios.delete(apiUrl + '/delBill',{params: myObj}).then(resp =>{
+        axios.delete(apiUrl + '/delBill', {params: myObj}).then(resp => {
             dispatch(DeleteBillSuccess(resp.data))
         }).catch(error => {
             dispatch(DeleteBillFail(error.message))
@@ -258,7 +252,7 @@ export const fetchUserData = (obj) => {
             //response.data data is the document of user
             // console.log("fetching");
             dispatch(fetchUserDataSuccess(resp.data))
-          // console.log("fetching",resp.data );
+            // console.log("fetching",resp.data );
         }).catch(error => {
             dispatch(fetchUserDataFailure(error.message))
         })

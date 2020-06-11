@@ -6,19 +6,12 @@ import Image from "react-bootstrap/Image";
 import dev from "../images/Dev_image.jpg"
 import db from "../images/mongo.jpeg"
 import aws from '../images/aws.jpeg'
-<<<<<<< HEAD
-import rct from '../images/react.jpeg'
-=======
 import rct from '../images/react.png'
->>>>>>> about me
 import docker from "../images/docker.jpeg"
 import node from "../images/node express.jpeg"
 import CardGroup from "react-bootstrap/CardGroup";
 import Card from "react-bootstrap/Card";
-<<<<<<< HEAD
-=======
 import boot from "../images/bootstrap.jpeg"
->>>>>>> about me
 
 const AboutMe = () => {
 
@@ -27,72 +20,7 @@ const AboutMe = () => {
 
             <Container fluid style={{
                 paddingTop: "5%",
-<<<<<<< HEAD
-                paddingBottom: "10%"
-            }}>
-                <Row className="justify-content-md-center">
-                    <h1>About application</h1>
-                </Row>
-            </Container>
-
-            <Row style={{paddingBottom: "5%"}}>
-                <Container>
-                    <CardGroup>
-                        <Card>
-                            <Card.Img variant="top" src={rct}/>
-                            <Card.Body>
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-                        </Card>
-                        <Card>
-                            <Card.Img variant="top" src={node}/>
-                            <Card.Body>
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This card has supporting text below as a natural lead-in to additional
-                                    content.{' '}
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-                        </Card>
-                        <Card>
-                            <Card.Img variant="top" src={db}/>
-                            <Card.Body>
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This card has even longer content than the first to
-                                    show that equal height action.
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-                        </Card>
-                        <Card>
-                            <Card.Img variant="top" src={docker}/>
-                            <Card.Body>
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This card has even longer content than the first to
-                                    show that equal height action.
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-=======
-                paddingBottom: "5%"
+                paddingBottom: "8%"
             }}>
                 <Row className="justify-content-md-center">
                     <h1 style={{
@@ -141,7 +69,7 @@ const AboutMe = () => {
 
                                 <Card.Title>Node.js</Card.Title>
                                 <Card.Text>
-                                    Node.js server running Express.js framework handling api requests and database operations.
+                                    Node.js server running Express.js framework
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -167,25 +95,10 @@ const AboutMe = () => {
                                 </Card.Text>
                             </Card.Body>
 
->>>>>>> about me
                         </Card>
 
                         <Card>
                             <Card.Img variant="top" src={aws}/>
-<<<<<<< HEAD
-                            <Card.Body>
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This card has even longer content than the first to
-                                    show that equal height action.
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-                        </Card>
-=======
                             {/*<Card.Header>Header</Card.Header>*/}
                             <Card.Body>
 
@@ -197,7 +110,6 @@ const AboutMe = () => {
 
                         </Card>
 
->>>>>>> about me
                     </CardGroup>
 
 
@@ -205,85 +117,52 @@ const AboutMe = () => {
             </Row>
 
             <Container fluid style={{paddingBottom: "5%"}}>
-<<<<<<< HEAD
                 <h2 style={{
                     fontSize: "2em",
-                    margin: "0.67em 0"
-                }}>About Me</h2>
-=======
+                    margin: "0.67em 0",
+                    fontFamily: "verdana",
+                    color: "rgb(55, 0, 179)"
 
->>>>>>> about me
+                }}>About Me</h2>
                 <Row className="justify-content-md-center">
                     <Col md={{span: 3, offset: 2}}>
                         <Row className="justify-content-md-center" style={{paddingBottom: "3%"}}>
                             <Image src={dev} roundedCircle style={{height: "200px"}}/>
                         </Row>
                         <Row className="justify-content-md-center">
-<<<<<<< HEAD
-                            <Col md="auto"> <i style={{color: "#0077b5"}} className="fa fa-linkedin"
-                                     aria-hidden="true"/></Col>
-                            <Col md="auto"> <i style={{color: "black"}} className="fa fa-github" aria-hidden="true"/></Col>
-                            <Col md="auto"> <i style={{color: "#f48024"}} className="fa fa-stack-overflow"
-                                     aria-hidden="true"/></Col>
-=======
-                            <Col md="auto"><a target="_blank" rel="noopener noreferrer"
-                                              href="https://www.linkedin.com/in/yaminhuzaifa/"><i
+                            <Col md="auto"><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/yaminhuzaifa/"><i
                                 style={{color: "#0077b5"}} className="fa fa-linkedin"
                                 aria-hidden="true"/></a> </Col>
-                            <Col md="auto"> <a target="_blank" rel="noopener noreferrer"
-                                               href="https://github.com/Huzi1"> <i style={{color: "black"}}
+                            <Col md="auto"> <a target="_blank" rel="noopener noreferrer" href="https://github.com/Huzi1"> <i style={{color: "black"}}
                                                                                    className="fa fa-github"
                                                                                    aria-hidden="true"/></a></Col>
-                            <Col md="auto"> <a target="_blank" rel="noopener noreferrer"
-                                               href="https://stackoverflow.com/users/13069003/huzaifa-yamin"> <i
+                            <Col md="auto"> <a target="_blank" rel="noopener noreferrer" href="https://stackoverflow.com/users/13069003/huzaifa-yamin"> <i
                                 style={{color: "#f48024"}} className="fa fa-stack-overflow"
                                 aria-hidden="true"/> </a></Col>
->>>>>>> about me
 
 
                         </Row>
                     </Col>
 
-<<<<<<< HEAD
-                    {/*<Card style={{width: '18rem'}}>*/}
-                    {/*    <Card.Img variant="top" src={dev}/>*/}
-                    {/*    <Card.Body>*/}
-                    {/*        <Card.Title>Card Title</Card.Title>*/}
-                    {/*        <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>*/}
-                    {/*        <Card.Text>*/}
-                    {/*            Some quick example text to build on the card title and make up the bulk of*/}
-                    {/*            the card's content.*/}
-                    {/*        </Card.Text>*/}
-                    {/*        <Card.Link href="#"><i style={{color: "#0077b5"}} className="fa fa-linkedin" aria-hidden="true"/></Card.Link>*/}
-                    {/*        <Card.Link href="#"><i style={{color: "black"}} className="fa fa-github" aria-hidden="true"/> </Card.Link>*/}
-                    {/*        <Card.Link href="#"><i style={{color: "#f48024"}}className="fa fa-stack-overflow" aria-hidden="true"/> </Card.Link>*/}
-                    {/*    </Card.Body>*/}
-                    {/*</Card>*/}
-                    <Col>
-                        j
-=======
                     <Col md={{span: 3, offset: -2}}>
-                        <h2 style={{
-                            fontSize: "2em",
-                            margin: "0.67em 0",
-                            fontFamily: "verdana",
-                            color: "rgb(55, 0, 179)"
+                            <h2 style={{
+                                fontSize: "2em",
+                                margin: "0.67em 0",
+                                fontFamily: "verdana",
+                                color: "rgb(55, 0, 179)"
 
-                        }}>About Me</h2>
-                        <p><strong> "
+                            }}>About Me</h2>
+                            <p><strong> "
 
-                            I am a full stack software developer based in Melbourne, Australia.
-                            I like to explore new languages, frameworks and cloud services.
-                            I am a recent graduate from RMIT University in masters of information technology specialized
-                            in software engineering "
+                                I am a full stack software developer based in Melbourne, Australia.
+                                I like to explore new languages, frameworks and cloud services.
+                                I am a recent graduate from RMIT University in masters of information technology
+                                specialized
+                                in software engineering "
 
-                        </strong></p>
+                            </strong></p>
 
-                    </Col>
-                    <Col>
-
->>>>>>> about me
-                    </Col>
+                        </Col>
                 </Row>
             </Container>
 

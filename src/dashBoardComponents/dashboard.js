@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchUserData, logOut} from "../redux/actions";
 import Spinner from "react-bootstrap/Spinner";
 import {Redirect} from "react-router-dom";
-import aboutMe from "./aboutMe";
+
 import AboutMe from "./aboutMe";
 
 
@@ -31,14 +31,7 @@ const DashBoard = (props) => {
     const userData = useSelector(
         state => state.dashboardReducer.data
     );
-    // const userError = useSelector(
-    //     state => state.dashboardReducer.error
-    // );
-<<<<<<< HEAD
 
-=======
-    // console.log(document.getElementById("mySidebar").classList.contains("sidenav---sidenav---_2tBP sidenav---expanded---1KdUL"))
->>>>>>> about me
     if (userData.length !== 0) {
 
 

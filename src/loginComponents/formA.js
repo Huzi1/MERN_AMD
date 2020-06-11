@@ -53,6 +53,7 @@ const FormA = () => {
             />)
         } else {
             console.log("loginError", loginError);
+            console.log(loginData)
 
         }
     }
@@ -150,8 +151,8 @@ const FormA = () => {
                                             disabled={isSubmitting}>Submit</button>
                             }
                             { (()=>{
-                                if(loginData && loginData){
-                                    if(loginData === 204){
+                                if(loginData && loginData.code){
+                                    if(loginData.code === 204){
                                         return <span> <h4 style={{color: "#c51c1c"}}>Incorrect username or password</h4></span>
                                     }
                                 }
