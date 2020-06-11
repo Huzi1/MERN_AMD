@@ -18,9 +18,12 @@ WORKDIR $APP_DIR
 COPY package*.json ./
 RUN npm ci
 RUN npm install react-scripts@3.4.0 -g --silent
+RUN npm install -g serve
 
 COPY . .
+RUN npm run build
 
-CMD [ "npm", "start" ]
+
+CMD [ "serve", "-s", "build", "-l", "3000" ]
 
 EXPOSE $PORT

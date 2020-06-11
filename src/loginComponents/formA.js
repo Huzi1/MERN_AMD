@@ -53,7 +53,7 @@ const FormA = () => {
             />)
         } else {
             console.log("loginError", loginError);
-            console.log(loginData)
+
 
         }
     }

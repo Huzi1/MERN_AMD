@@ -69,7 +69,7 @@ const AboutMe = () => {
 
                                 <Card.Title>Node.js</Card.Title>
                                 <Card.Text>
-                                    Node.js server running Express.js framework
+                                    Node.js server running Express.js framework handling api requests and database operations.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -117,13 +117,7 @@ const AboutMe = () => {
             </Row>
 
             <Container fluid style={{paddingBottom: "5%"}}>
-                <h2 style={{
-                    fontSize: "2em",
-                    margin: "0.67em 0",
-                    fontFamily: "verdana",
-                    color: "rgb(55, 0, 179)"
 
-                }}>About Me</h2>
                 <Row className="justify-content-md-center">
                     <Col md={{span: 3, offset: 2}}>
                         <Row className="justify-content-md-center" style={{paddingBottom: "3%"}}>
@@ -163,6 +157,9 @@ const AboutMe = () => {
                             </strong></p>
 
                         </Col>
+                    <Col>
+
+                    </Col>
                 </Row>
             </Container>
 

@@ -168,7 +168,7 @@ function sortSelectedBill(title, arrObj) {
 };
 
 // export default ArrayToSet;
-module.exports = {
+export default{
     ArrayToSet,
     BillBykey,
     toUpperCase,
@@ -177,4 +177,4 @@ module.exports = {
     sortSelectedBill,
     sortBillByYear,
     yearlyTotalBillSum
-}
+};

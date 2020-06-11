@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Bills from "./billsNav";
 import HomeNav from "./homeNav"
 import SideNav, {NavItem, NavIcon, NavText} from '@trendmicro/react-sidenav'
-import util from "../utils/util"
+import util from '../utils/util';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserData, logOut} from "../redux/actions";
 import Spinner from "react-bootstrap/Spinner";
