@@ -1,4 +1,4 @@
-Under Construction!!! 
+Running Live: http://3.134.98.84:3000/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
