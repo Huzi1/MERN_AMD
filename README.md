@@ -1,8 +1,9 @@
 Running Live: http://3.134.98.84:3000/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 (https://github.com/Huzi1/MERN_AMD/blob/master/react.png)
 
+![GitHub Logo](/react.png)
+Format: ![Alt Text](https://github.com/Huzi1/MERN_AMD/blob/master/react.png)
 ## Available Scripts
 
 In the project directory, you can run:
